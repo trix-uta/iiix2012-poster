@@ -4,35 +4,74 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <title>Unobtrusive mobile browsing behavior tracking tool by trix-uta</title>
-
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
     <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
   </head>
   <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/trix-uta/iiix2012-poster">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/trix-uta/iiix2012-poster/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/trix-uta/iiix2012-poster/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
     <div class="wrapper">
-      <header>
-        <h1>Unobtrusive mobile browsing behavior tracking tool</h1>
-        <p>Companion site for IIiX 2012 poster paper</p>
-        <p class="view"><a href="https://github.com/trix-uta/iiix2012-poster">View the Project on GitHub <small>trix-uta/iiix2012-poster</small></a></p>
-        <ul>
-          <li><a href="https://github.com/trix-uta/iiix2012-poster/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/trix-uta/iiix2012-poster/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/trix-uta/iiix2012-poster">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
+
       <section>
+        <div id="title">
+          <h1>Unobtrusive mobile browsing behavior tracking tool</h1>
+          <p>Companion site for IIiX 2012 poster paper</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/trix-uta">trix-uta</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></span>
+        </div>
+
         <h3>Placeholder content</h3>
+
+<h4>Utaproxy is extendable with JS plugins</h4>
+
+<div class="highlight"><pre><span class="p">;(</span><span class="kd">function</span><span class="p">(</span> <span class="nx">UsaProxy</span><span class="p">,</span> <span class="nb">document</span><span class="p">,</span> <span class="nb">window</span><span class="p">,</span> <span class="kc">undefined</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="nx">UsaProxy</span><span class="p">.</span><span class="nx">plugins</span><span class="p">.</span><span class="nx">monocle</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="nx">setup</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{},</span>
+        <span class="nx">events</span> <span class="o">:</span> <span class="p">[</span> <span class="p">{</span>
+                  <span class="nx">bindTo</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> 
+                      <span class="k">return</span> <span class="nx">UsaProxy</span><span class="p">.</span><span class="nx">jQuery</span><span class="p">(</span> <span class="s1">'.monelem_box'</span> <span class="p">).</span><span class="nx">get</span><span class="p">();</span> <span class="p">},</span>
+                  <span class="nx">events</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> 
+                      <span class="k">return</span> <span class="p">[</span> <span class="s1">'monocle:turn'</span> <span class="p">];</span> <span class="p">},</span>
+                  <span class="nx">onTrigger</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">event</span> <span class="p">)</span> <span class="p">{</span>
+                      <span class="kd">var</span> <span class="nx">reader</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">dom</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">reader</span><span class="p">;</span>
+                      <span class="kd">var</span> <span class="nx">place</span> <span class="o">=</span> <span class="nx">reader</span><span class="p">.</span><span class="nx">getPlace</span><span class="p">();</span>
+                      <span class="k">return</span> <span class="p">{</span>
+                          <span class="nx">pageNumber</span> <span class="o">:</span> <span class="nx">place</span><span class="p">.</span><span class="nx">pageNumber</span><span class="p">(),</span>
+                          <span class="nx">bottom</span> <span class="o">:</span> <span class="mf">100.0</span> <span class="o">*</span> <span class="nx">place</span><span class="p">.</span><span class="nx">percentAtBottomOfPage</span><span class="p">(),</span>
+                          <span class="nx">top</span> <span class="o">:</span> <span class="mf">100.0</span> <span class="o">*</span> <span class="nx">place</span><span class="p">.</span><span class="nx">percentAtTopOfPage</span><span class="p">()</span>
+                      <span class="p">};</span> <span class="p">},</span>
+                  <span class="nx">deferBind</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">bindFunc</span> <span class="p">)</span> <span class="p">{</span>
+                      <span class="nx">UsaProxy</span><span class="p">.</span><span class="nx">jQuery</span><span class="p">(</span> <span class="s1">'div'</span> <span class="p">).</span><span class="nx">one</span><span class="p">(</span> <span class="s1">'monocle:loaded'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                          <span class="nx">bindFunc</span><span class="p">(</span> <span class="p">[</span> <span class="k">this</span> <span class="p">]</span> <span class="p">);</span>
+                      <span class="p">}</span> <span class="p">);</span>
+                  <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="p">]</span>   
+    <span class="p">};</span>
+<span class="p">}</span> <span class="p">)(</span> <span class="nx">UsaProxy</span><span class="p">,</span> <span class="nb">document</span><span class="p">,</span> <span class="nb">window</span> <span class="p">);</span>
+</pre></div>
       </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/trix-uta">trix-uta</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
+
     </div>
-    <script src="javascripts/scale.fix.js"></script>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
     
   </body>
 </html>
