@@ -32,18 +32,17 @@
       <section>
         <div id="title">
           <h1>Unobtrusive mobile browsing behavior tracking tool</h1>
-          <p>Companion site for IIiX 2012 poster paper</p>
-          <hr>
-          <span class="credits left">Project maintained by <a href="https://github.com/trix-uta">trix-uta</a></span>
-          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></span>
+
+
         </div>
-
-
-      </section>
-      <div id="authors">
-<p>Matti Lassila, Teemu Pääkkönen, Paavo Arvola, Jaana Kekäläinen, and Marko Junkkari</p>
+<div id="authors">
+<p>Matti Lassila, Teemu Pääkkönen, Paavo Arvola, Jaana Kekäläinen, and Marko Junkkari<br/>
 <p>University of Tampere, School of information Sciences</p>
 </div>
+
+     <hr>
+      </section>
+
 
 <section>
     <h2>Abstract</h2>
@@ -67,7 +66,7 @@
    <p><em>Ordered browsing session</em> is a tuple O = &lang;s<sub>1</sub>, s<sub>2</sub>,...,s<sub>n</sub>&rang; where each s<sub>i</sub> (i &isin; {1,...,|S<sub>B</sub>|}) belongs to S<sub>B</sub> and s<sub>j</sub>[tsp<sub>e</sub>] &lt; s<sub>j+1</sub>[tsp<sub>s</sub>] for each j &isin; {1,..., i-1}. An ordered browsing session is <em>connected</em> if s<sub>j</sub>[tsp<sub>e</sub>] ~&lt; s<sub>j+1</sub>[tsps]. The notation &quot;~&lt;&quot; means &quot;only little smaller&quot; or follows immediately (in used precision). O is linear if s<sub>j</sub>[p<sub>s</sub>] &lt; s<sub>j+1</sub>[p<sub>s</sub>].</p>
    <p><em>Moving distance M</em> means a sequence between two events in an ordered browsing session. Let s<sub>x</sub> and s<sub>y</sub> be two browsing events in O then M(s<sub>x</sub>, s<sub>y</sub>) = s<sub>y</sub>[p<sub>s</sub>]-s<sub>x</sub>[p<sub>s</sub>]. M is a positive integer in forward browsing and negative in backward browsing. Moving is total if the related views do not overlap, i.e. {z| z &isin; s<sub>y</sub>[p<sub>s</sub>]} &cap; {z| z &isin; s<sub>z</sub>[p<sub>s</sub>]} = &empty;. Otherwise it is partial. <em>Jumping</em> means changing a view to another such that they do not overlap. Let s<sub>i</sub> and s<sub>i+1</sub> be two sequential events in O. If s<sub>i</sub>[p<sub>e</sub>] +1 &lt; s<sub>i+1</sub>[p<sub>s</sub>] then the user has jumped forward. If s<sub>i</sub>[p<sub>s</sub>] -1 > s<sub>i+1</sub>[p<sub>e</sub>] then the user has jumped backward.</p>
    <p>Scrolling consists of brief adjacent events, where the moving distance is minimal, i.e. the user scrolls with a speed not suitable for reading. Scrolling consists of sequential events denoted by O<sub>S</sub> =&lang;t<sub>1</sub>, ...,t<sub>m</sub>&rang;, where t<sub>1</sub> is called <em>scroll start event</em> and t<sub>m</sub> <em>scroll stop event</em>. O<sub>S</sub> is a <em>sequence of events</em> in O started from s<sub>k</sub> if for each i &isin; {1,...,m} holds t<sub>i</sub> = s<sub>k+i-1</sub> and for each j &isin; {1,..., m-1}: t<sub>j</sub>[tsp<sub>e</sub>] ~&lt; t<sub>j+1</sub>[tsp<sub>s</sub>] and t<sub>j</sub>[p<sub>s</sub>] ~< t<sub>j+1</sub>[p<sub>e</sub>] or t<sub>j</sub>[p<sub>e</sub>] ~&lt; t<sub>j+1</sub>[ps]. In forward scrolling t<sub>j</sub>[p<sub>s</sub>] &lt; t<sub>j+1</sub>[p<sub>e</sub>] and in backward scrolling t<sub>j</sub>[p<sub>e</sub>] &lt; t<sub>j+1</sub>[ps]. The area between t<sub>1</sub>[p<pub>s</pub>] and t<sub>m</sub>[p<sub>e</sub>] is called a <em>scroll zone</em>.</p>
-   <p>The user can spend different times in a view. For distinguishing different behavior of browsing we denote two threshold values: vb means the threshold value that determines minimal time needed for reading the view. If the used time is less than vb then the view is only blinked. v<sub>s</sub> means a period of no browsing actions, i.e. it is assumed that the user has other activities. In other words, based on these values we model blinking, reading and sleeping modes.</p>
+   <p>The user can spend different times in a view. For distinguishing different behavior of browsing we denote two threshold values: v<sub>b</sub> means the threshold value that determines minimal time needed for reading the view. If the used time is less than v<sub>b</sub> then the view is only blinked. v<sub>s</sub> means a period of no browsing actions, i.e. it is assumed that the user has other activities. In other words, based on these values we model blinking, reading and sleeping modes.</p>
    <p>A <em>blinked area</em> can be found in a connected ordered browsing session, i.e. it can be distinguish as a subtuple O<sub>B</sub> of O. O<sub>B</sub> =&lang;t1, ...,t&rang; is a blinked part of O started from s<sub>k</sub> if for each i &isin; {1,...,m} holds t<sub>i</sub> = s<sub>k+i-1</sub>	and for each j &isin; {1,..., m-1}: tj[tsp<sub>e</sub>] - tj+1[tsp<sub>s</sub>] < v<sub>b</sub> and t<sub>j</sub>[p<sub>e</sub>] &lt; t<sub>j+1</sub>[p<sub>s</sub>] (in forward browsing) or t<sub>j</sub>[p<sub>e</sub>] &gt; t<sub>j+1</sub>[p<sub>s</sub>] (in backward browsing). The blinked area is between t<sub>1</sub>[p<sub>s</sub>], and t<sub>m</sub>[p<sub>e</sub>]. In practice a blinked area is formed by scrolling or jumping.</p>
    <p>A subtuple O<sub>R</sub> of connected ordered browsing tuple O relates to the read area. O<sub>R</sub> = &lang;t<sub>1</sub>, ...,t<sub>m</sub>&rang; is a read part of O started from s<sub>k</sub> if for each i &isin; {1,...,m} holds t<sub>i</sub> = s<sub>k+i-1</sub> and for each j &isin; {1,..., m- 1}: v<sub>b</sub> &lt; tj[tsp<sub>e</sub>] - t<sub>j+1</sub>[tsp<sub>s</sub>] and t<sub>j</sub>[p<sub>e</sub>] &lt; t<sub>j+1</sub>[p<sub>s</sub>] (in forward browsing) or t<sub>j</sub>[p<sub>e</sub>] &gt; t<sub>j+1</sub>[p<sub>s</sub>] (in backward browsing). The read area is between t<sub>1</sub>[p<sub>s</sub>], and t<sub>m</sub>[p<sub>e</sub>]. It is worth noting that sleeping parts are included in the read parts.</p>
    <p>A browsing event s is in a sleeping mode if t<sub>j</sub>[tsp<sub>e</sub>] - t<sub>j+1</sub>[tsp<sub>s</sub>] &gt; v<sub>s</sub>.</p>
@@ -123,17 +122,20 @@
 <section>
     <h2>References</h2>
     <ul class="refs">
-    <li id="1">[1]	Alexander, J. and Cockburn, A. 2008. An empirical characterisation of electronic document navigation. In Proceedings of Graphics Interface 2008 (GI'08), 123-130.</li>
-<li id="2">[2]	Arvola, P., Kekäläinen, J., and Junkkari, M. 2010. Expected reading effort in focused retrieval evaluation. Information Retrieval, 13(4), 460-484.</li>
-<li id="3">[3]	Arvola, P., Junkkari, M. and Kekäläinen, J. 2006. Applying XML Retrieval Methods for Result Document Navigation in Small Screen Devices. In Proceedings of MUIA at MobileHCI 2006, 6-10.</li>
-<li id="4">[4]	Atterer, R., Wnuk, M., and Schmidt, A. 2006. Knowing the user's every move: user activity tracking for website usability evaluation and implicit interaction. In Proceedings of the 15th international conference on World Wide Web (WWW '06), 203-212.</li>
-<li id="5">[5]	Borlund, P. 2000. Experimental components for the evaluation of interactive information retrieval systems. J. of Doc. 56, 1, 71-90.</li>
-<li id="6">[6]	Borlund, P. 2003. The IIR evaluation model: a framework for evaluation of interactive information retrieval system. Information Research. An International Electronic Journal 8, 3.</li>
-<li id="7">[7]	Harper, D. J., Koychev, I., Sun, Y., and Pirie, I. 2004. Within-document retrieval: a user-centred evaluation of relevance profiling. Inf. Retr., 7(3-4), 265-290.
-<li id="8">[8]	Kelly, D. 2009. Methods for evaluating interactive information retrieval systems with users. Found. Trends Inf. Retr. 3 (January 2009), 1-224. DOI=10.1561/1500000012.</li>
-<li id="9">[9]	Loizides, F. and Buchanan, G. 2009. An empirical study of user navigation during document triage. In Proceedings of the 13th European conference on Research and advanced technology for digital libraries (ECDL'09), 138-149.</li>
+    <li id="1">[1]	Alexander, J. and Cockburn, A. 2008. <a href="http://ir.canterbury.ac.nz/handle/10092/2584">An empirical characterisation of electronic document navigation</a>. In Proceedings of Graphics Interface 2008 (GI'08), 123-130.</li>
+<li id="2">[2]	Arvola, P., Kekäläinen, J., and Junkkari, M. 2010. <a href="dx.doi.org/10.1007/s10791-010-9133-9">Expected reading effort in focused retrieval evaluation</a>. Information Retrieval, 13(4), 460-484.</li>
+<li id="3">[3]	Arvola, P., Junkkari, M. and Kekäläinen, J. 2006. <a href="users.dimi.uniud.it/~stefano.mizzaro/research/papers/MUIA06Proceedings.pdf">Applying XML Retrieval Methods for Result Document Navigation in Small Screen Devices</a>. In Proceedings of MUIA at MobileHCI 2006, 6-10.</li>
+<li id="4">[4]	Atterer, R., Wnuk, M., and Schmidt, A. 2006. <a href="http://dx.doi.org/10.1145/1135777.1135811">Knowing the user's every move: user activity tracking for website usability evaluation and implicit interaction</a>. In Proceedings of the 15th international conference on World Wide Web (WWW '06), 203-212.</li>
+<li id="5">[5]	Borlund, P. 2000. <a href="reference.kfupm.edu.sa/content/e/x/experimental_components_for_the_evaluati_78045.pdf">Experimental components for the evaluation of interactive information retrieval systems</a>. J. of Doc. 56, 1, 71-90.</li>
+<li id="6">[6]	Borlund, P. 2003. <a href="http://informationr.net/ir/8-3/paper152.html">The IIR evaluation model: a framework for evaluation of interactive information retrieval system</a>. Information Research. An International Electronic Journal 8, 3.</li>
+<li id="7">[7]	Harper, D. J., Koychev, I., Sun, Y., and Pirie, I. 2004. <a href="www.comp.rgu.ac.uk/staff/sy/index_files/withinDocument_harper_IRJournal04.pdf">Within-document retrieval: a user-centred evaluation of relevance profiling</a>. Inf. Retr., 7(3-4), 265-290.
+<li id="8">[8]	Kelly, D. 2009. <a href="http:/dx.doi.org/10.1561/1500000012">Methods for evaluating interactive information retrieval systems with users</a>. Found. Trends Inf. Retr. 3 (January 2009), 1-224. DOI=10.1561/1500000012.</li>
+<li id="9">[9]	Loizides, F. and Buchanan, G. 2009. <a href="http://dx.doi.org/10.1007/978-3-642-04346-8">An empirical study of user navigation during document triage</a>. In Proceedings of the 13th European conference on Research and advanced technology for digital libraries (ECDL'09), 138-149.</li>
 </section>
-
+ <section>
+ <span class="credits left">Project maintained by <a href="https://github.com/trix-uta">trix-uta</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></span>
+</section>
     </div>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
 
