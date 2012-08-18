@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Unobtrusive mobile browsing behavior tracking tool by trix-uta</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/trix-uta/iiix2012-poster">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/trix-uta/iiix2012-poster/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/trix-uta/iiix2012-poster/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>Unobtrusive mobile browsing behavior tracking tool</h1>
+          <p>Companion site for IIiX 2012 poster paper</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/trix-uta">trix-uta</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></span>
+        </div>
+
+
+      </section>
+      <div id="authors">
+<p>Matti Lassila, Teemu Pääkkönen, Paavo Arvola, Jaana Kekäläinen, and Marko Junkkari</p>
+<p>University of Tampere, School of information Sciences</p>
+</div>
+
+<section>
+    <h2>Abstract</h2>
+    <p>Unobtrusive user tracking is needed in order to achieve realistic test settings for IIR. This demand is stressed, when studying the usage of mobile devices in IR. In this study, we present a model and a tool for observing and recording user’s browsing within a retrieved web document. We extend an existing open source program UsaProxy with functionalities for tracking browsing behaviour.</p>
+</section>
+<section>
+    <h2>1. Introduction</h2>
+    <p>Mobile devices differ from each other having highly personalized settings and appearance. In addition they are used basically anywhere and any place. While having the same information sources, using a mobile device to access textual information differs from using a desktop device. Namely, in a desktop browser document’s body text fits well to the screen, in most cases horizontally and in many cases vertically. All serious contemporary browsers for the mobile devices aim to remove the cumbersome horizontal scrolling by automatically adjusting the text content for the screen size. Also, vertically, the screen size limits the amount of visible text and thus affects the information access: reaching the relevant material requires browsing within a document, which in the conventional case is basically scrolling the document vertically forth and back. In focused retrieval, to facilitate information access, the user is guided to the most relevant spots provided by a focused retrieval system (see e.g. [<a href="#2">2</a>, <a href="#3">3</a>, <a href="#7">7</a>]). Our aim is to model the IR behaviour of users and test the benefits of focused access in a mobile search environment. To study this, a tool for unobtrusive tracking is needed.</p>
+
+    <p>Users interact with websites in several ways, e.g. by clicking hyperlinks, activating input elements such as check boxes or scrolling. Almost all user interaction can be tracked by using a proxy server to inject tracking scripts into the served websites, as demonstrated by Atterer, Wnuk and Schmidt [<a href="#4">4</a>]. Their tracking proxy software, UsaProxy, while being useful for tracking user interaction in many cases, requires modifications in order to be useful for tracking what we needed – scrolling and elements visible to the user. In order to track what the user sees at each moment, the appearances and disappearances of website elements - such as images, lists or tables - must be captured (see [<a href="#1">1</a>, <a href="#9">9</a>]). To achieve this, we modified the original UsaProxy software to capture scrolling events more precisely while tracking element visibility, and created software tools to extract and visualize this information.</p>
+
+    <p>From the perspective of IIR we introduce tools for observing user’s browsing within a web document. Our tool enables a more realistic test setting, because no disturbing observation is needed and the user is able to perform tasks regardless of the time, place and device. Thus, using the tool we are able to collect empirical data in real and simulated tasks. In addition our tool enables detailed analysis of moves in document browsing, and development of measures based on temporal aspects.</p>
+
+    <p>We specify a formal model for tracking user behaviour while browsing within a result document, i.e. retrieving information from a document. The model gives a general framework for analysing user behaviour in browsing different kinds of documents. In the following section we introduce the model for possible actions in document browsing in a mobile search environment. In Section 3 we introduce the proposed tool, the enhanced UsaProxy, with our contributions on element level tracking and visualization of element browsing. In Section 4 we discuss future directions of our study, such as the use of the suggested tool in IIR testing, and conclude the article.</p>
+
+    <h2>2. Model for document browsing</h2>
+
+    <p>We define a document browsing session, and its events. These aim to capture the plausible functions of browsing a result document in a mobile search environment. They serve as units in the log analysis. The model assumes certain actions of document browsing, but does not specify user behaviour; rather it facilitates exploring different browsing behaviours.</p>
+    <p>A web document’s text body is represented as a sequence of characters. Each character has a position which is calculated from the beginning of the document. A <em>view</em> is the part of the document visible on the screen and it is determined as a part of the document by the start and end positions related to the underlying document. In formal representation a tuple (sequence) is denoted between angle brackets. Square brackets are used to refer to an element of a tuple. For example if t = &lang;a,b,c&rang; is a tuple then t[b] denotes the b element of t.</p>
+   <p><em>Browsing event</em> is a tuple &lang;p<sub>s</sub>, p<sub>e</sub>, tsp<sub>s</sub>, tsp<sub>e</sub>, E&rang; where ps and pe are the start and end document positions of the view. In other words, p<sub>e</sub> - p<sub>s</sub> is the size of the view. tsp<sub>s</sub> and tsp<sub>e</sub> are timestamps that determine user’s arrival and departure time points to and from the view. In other words, the time the user spends in a view is tsp<sub>e</sub> - tsp<sub>s</sub>. E is a set of visible elements (e.g. images or text elements) in the view. <em>Browsing session</em> is set S<sub>B</sub> of browsing events.</p>
+   <p><em>Ordered browsing session</em> is a tuple O = &lang;s<sub>1</sub>, s<sub>2</sub>,...,s<sub>n</sub>&rang; where each s<sub>i</sub> (i &isin; {1,...,|S<sub>B</sub>|}) belongs to S<sub>B</sub> and s<sub>j</sub>[tsp<sub>e</sub>] &lt; s<sub>j+1</sub>[tsp<sub>s</sub>] for each j &isin; {1,..., i-1}. An ordered browsing session is <em>connected</em> if s<sub>j</sub>[tsp<sub>e</sub>] ~&lt; s<sub>j+1</sub>[tsps]. The notation &quot;~&lt;&quot; means &quot;only little smaller&quot; or follows immediately (in used precision). O is linear if s<sub>j</sub>[p<sub>s</sub>] &lt; s<sub>j+1</sub>[p<sub>s</sub>].</p>
+   <p><em>Moving distance M</em> means a sequence between two events in an ordered browsing session. Let s<sub>x</sub> and s<sub>y</sub> be two browsing events in O then M(s<sub>x</sub>, s<sub>y</sub>) = s<sub>y</sub>[p<sub>s</sub>]-s<sub>x</sub>[p<sub>s</sub>]. M is a positive integer in forward browsing and negative in backward browsing. Moving is total if the related views do not overlap, i.e. {z| z &isin; s<sub>y</sub>[p<sub>s</sub>]} &cap; {z| z &isin; s<sub>z</sub>[p<sub>s</sub>]} = &empty;. Otherwise it is partial. <em>Jumping</em> means changing a view to another such that they do not overlap. Let s<sub>i</sub> and s<sub>i+1</sub> be two sequential events in O. If s<sub>i</sub>[p<sub>e</sub>] +1 &lt; s<sub>i+1</sub>[p<sub>s</sub>] then the user has jumped forward. If s<sub>i</sub>[p<sub>s</sub>] -1 > s<sub>i+1</sub>[p<sub>e</sub>] then the user has jumped backward.</p>
+   <p>Scrolling consists of brief adjacent events, where the moving distance is minimal, i.e. the user scrolls with a speed not suitable for reading. Scrolling consists of sequential events denoted by O<sub>S</sub> =&lang;t<sub>1</sub>, ...,t<sub>m</sub>&rang;, where t<sub>1</sub> is called <em>scroll start event</em> and t<sub>m</sub> <em>scroll stop event</em>. O<sub>S</sub> is a <em>sequence of events</em> in O started from s<sub>k</sub> if for each i &isin; {1,...,m} holds t<sub>i</sub> = s<sub>k+i-1</sub> and for each j &isin; {1,..., m-1}: t<sub>j</sub>[tsp<sub>e</sub>] ~&lt; t<sub>j+1</sub>[tsp<sub>s</sub>] and t<sub>j</sub>[p<sub>s</sub>] ~< t<sub>j+1</sub>[p<sub>e</sub>] or t<sub>j</sub>[p<sub>e</sub>] ~&lt; t<sub>j+1</sub>[ps]. In forward scrolling t<sub>j</sub>[p<sub>s</sub>] &lt; t<sub>j+1</sub>[p<sub>e</sub>] and in backward scrolling t<sub>j</sub>[p<sub>e</sub>] &lt; t<sub>j+1</sub>[ps]. The area between t<sub>1</sub>[p<pub>s</pub>] and t<sub>m</sub>[p<sub>e</sub>] is called a <em>scroll zone</em>.</p>
+   <p>The user can spend different times in a view. For distinguishing different behavior of browsing we denote two threshold values: vb means the threshold value that determines minimal time needed for reading the view. If the used time is less than vb then the view is only blinked. v<sub>s</sub> means a period of no browsing actions, i.e. it is assumed that the user has other activities. In other words, based on these values we model blinking, reading and sleeping modes.</p>
+   <p>A <em>blinked area</em> can be found in a connected ordered browsing session, i.e. it can be distinguish as a subtuple O<sub>B</sub> of O. O<sub>B</sub> =&lang;t1, ...,t&rang; is a blinked part of O started from s<sub>k</sub> if for each i &isin; {1,...,m} holds t<sub>i</sub> = s<sub>k+i-1</sub>	and for each j &isin; {1,..., m-1}: tj[tsp<sub>e</sub>] - tj+1[tsp<sub>s</sub>] < v<sub>b</sub> and t<sub>j</sub>[p<sub>e</sub>] &lt; t<sub>j+1</sub>[p<sub>s</sub>] (in forward browsing) or t<sub>j</sub>[p<sub>e</sub>] &gt; t<sub>j+1</sub>[p<sub>s</sub>] (in backward browsing). The blinked area is between t<sub>1</sub>[p<sub>s</sub>], and t<sub>m</sub>[p<sub>e</sub>]. In practice a blinked area is formed by scrolling or jumping.</p>
+   <p>A subtuple O<sub>R</sub> of connected ordered browsing tuple O relates to the read area. O<sub>R</sub> = &lang;t<sub>1</sub>, ...,t<sub>m</sub>&rang; is a read part of O started from s<sub>k</sub> if for each i &isin; {1,...,m} holds t<sub>i</sub> = s<sub>k+i-1</sub> and for each j &isin; {1,..., m- 1}: v<sub>b</sub> &lt; tj[tsp<sub>e</sub>] - t<sub>j+1</sub>[tsp<sub>s</sub>] and t<sub>j</sub>[p<sub>e</sub>] &lt; t<sub>j+1</sub>[p<sub>s</sub>] (in forward browsing) or t<sub>j</sub>[p<sub>e</sub>] &gt; t<sub>j+1</sub>[p<sub>s</sub>] (in backward browsing). The read area is between t<sub>1</sub>[p<sub>s</sub>], and t<sub>m</sub>[p<sub>e</sub>]. It is worth noting that sleeping parts are included in the read parts.</p>
+   <p>A browsing event s is in a sleeping mode if t<sub>j</sub>[tsp<sub>e</sub>] - t<sub>j+1</sub>[tsp<sub>s</sub>] &gt; v<sub>s</sub>.</p>
+   <h2>3. Tracking and visualizing user interaction</h2>
+   <p>Our tool comprises the browsing model described above, basing itself on a tool called UsaProxy [<a href="#4">4</a>]. UsaProxy enables obtaining highly detailed information about the actual browsing of websites, without any interruption or any hint of usage of such tool for the user. The information provided includes the mouse pointer location, entering text, or scrolling a page.</p>
+   <p>In its original form, UsaProxy tracks views by having a timed routine check whether the viewed document position has changed at regular intervals. Only a relative vertical position is recorded. This was inadequate for our needs, since we needed to record the positions of both the top and bottom edge of the browser window as well as what elements the user sees at any given time. The open source nature of UsaProxy allowed us to modify its functionality; therefore we decided to devise our own method of tracking and recording all the required information and incorporate the functionality into UsaProxy. Furthermore, there were no tools provided for examining and visualizing the recorded information, so we had to develop our own</p>
+   <p>Tracking arrival and departure time points is achieved by capturing scrolling events (i.e. scroll stop and scroll start). Each time the user starts scrolling the website, a scroll start event is triggered. Similarly, when the user stops scrolling, a scroll stop event is triggered. The scroll stop event will only be triggered after the blinking threshold time vb has passed since the last scrolling. New scroll start events will not be triggered before a scroll stop event has occurred. Each scroll stop event demarcates an arrival into a view, while a scroll start event demarcates a departure from a view. A browsing event tuple is constructed by recording the times of these events and the position of the browser window at each event.</p>
+   <p>To track the elements that are visible in each view, their positions in the document are stored. When a scroll stop event occurs, current and previous browsing events are compared to figure out a scroll zone that is then compared against the stored element positions. If an element is detected passing the scroll zone and still being in view when the user stops scrolling, an appearance event is recorded for that element. Disappearances are detected by storing the positions of all previously visible elements, and comparing that list to the scroll zone. Similarly to appearances, when a disappearance is detected, a disappearance event is recorded.</p>
+   TÄHÄN KUVAT 2 3 4 5
+   <p>The software writes all tracking information into a log file. Each log line represents a single event that occurred via user interaction on the tracked website (Figure 1). Using our tools, we extract scroll events, element appearances and element disappearances from the log file to create visualization such as the plots illustrated in Figures 2 and 3. In them, the horizontal axis represents the time and the vertical axis the (relative) length of the document. The varying sized curve represents a browsing session, i.e. the view in relation to the document’s vertical length and time. Dark bars represent elements included in the underlying view.</p>
+   <p>Blinking, reading and sleeping modes can be seen by examining the browser session plot. For example, in Figure 2 a linear browsing order is presented. At approximately 9:57:19, the page is loaded into browser. At approximately 9:57:28, the user starts scrolling for the first time. From there, the page is scrolled linearly from top to bottom. Each flat section represents a long browsing event, during which the user was reading the document (i.e. reading mode). Diagonal movements represent occurrences where the user was scrolling the document (i.e. blinking mode). At approximately 9:58:03 the user reaches the document's end and stops reading it, therefore entering sleeping mode. In Figure 3 a non-linear browsing session is depicted. There the user returns to the elements seen earlier in the session.</p>
+   <p>To allow further refining of the visualized data, the plot is made interactive with zooming, panning and element filtering controls (Figure 4). In Figure 5, for further examination of the logged elements, each element currently visible in the plot can be opened into a dialog window that shows detailed information on the element. In line with Figure 3, the user passes element H5 (having content “An example heading”) very quickly, but returns shortly to see it again. In the illustrated case, the software is set up to track only the appearances and disappearances of heading and image elements.</p>
+   <p>The plot style visualization enables one to see when and how the user found certain elements on the website. Interesting elements can be predetermined in the research setting, and the software set up to only track those elements. In case there are several elements or element types of interest, the visualization's element filtering feature can be used to reduce the set of visible elements to any subset of the tracked elements.</p>
+   <h2>4. Discussion and conclusions</h2>
+   <p>Interactive information retrieval (IIR) research focuses on users’ interactions with IR systems and information, their search behaviour as well as system evaluations [<a href="#8">8</a>]. Empirical studies in this area face several problems, many of which are related to controllability and realism of studies.</p>
+   <p>We have introduced a tool for unobtrusive IIR tracking, especially for testing mobile IIR and browsing within a document. Our tool offers</p>
+   <ol>
+       <li>a realistic setting for observing users’ browsing in web documents</li>
+       <li>a tool for gathering empirical data in real and simulated tasks</li>
+       <li>a tool for visualizing browsing sessions</li>
+       <li>means to develop measures based on temporal aspects in browsing documents.</li>
+   </ol>
+   <p>The tool allows tracking of users’ behaviour with minimal intrusion by the researcher. This enables enhanced realism in test situations but also required control through the detailed logs. Subjects’ action still needs to be triggered, and this calls for subtle consideration of the simulated work tasks.</p>
+   <p>The suggested browsing session model and tool are compatible with Borlund’s IIR model [<a href="#5">5</a>, <a href="#6">6</a>]. These components pertain to the part 1 of the IIR model ("[a] set of components which aims at ensuring a functional, valid, and realistic setting for the evaluation of IIR systems" [<a href="#6">6</a>]).</p>
+   <p>In an ongoing study we utilize the tool for exploring how users browse and access information within documents in mobile devices. We investigate browsing styles, which may be connected to work / search tasks. The logs and visualizations provided by the tool will be analysed for browsing patterns.</p>
+   <p>The tool can be used for researching different browsing models, like in our study, or exploring user behaviour in different test settings. The tool serves searching for predefined document parts, (known item search) but also allows more open tasks with user defined relevance. One possible application still is to observe and measure the quality of information design of a web page, that is, how the page is constructed e.g. in relation what query keys are used in a web search engine before accessing the page.</p>
+</section>
+<section>
+    <h2>Acknowledgements</h2>
+    <p>The study was supported by Academy of Finland under grant #140315 (EXHADA project).</p>
+</section>
+<section>
+    <h2>References</h2>
+    <ul class="refs">
+    <li id="1">[1]	Alexander, J. and Cockburn, A. 2008. An empirical characterisation of electronic document navigation. In Proceedings of Graphics Interface 2008 (GI'08), 123-130.</li>
+<li id="2">[2]	Arvola, P., Kekäläinen, J., and Junkkari, M. 2010. Expected reading effort in focused retrieval evaluation. Information Retrieval, 13(4), 460-484.</li>
+<li id="3">[3]	Arvola, P., Junkkari, M. and Kekäläinen, J. 2006. Applying XML Retrieval Methods for Result Document Navigation in Small Screen Devices. In Proceedings of MUIA at MobileHCI 2006, 6-10.</li>
+<li id="4">[4]	Atterer, R., Wnuk, M., and Schmidt, A. 2006. Knowing the user's every move: user activity tracking for website usability evaluation and implicit interaction. In Proceedings of the 15th international conference on World Wide Web (WWW '06), 203-212.</li>
+<li id="5">[5]	Borlund, P. 2000. Experimental components for the evaluation of interactive information retrieval systems. J. of Doc. 56, 1, 71-90.</li>
+<li id="6">[6]	Borlund, P. 2003. The IIR evaluation model: a framework for evaluation of interactive information retrieval system. Information Research. An International Electronic Journal 8, 3.</li>
+<li id="7">[7]	Harper, D. J., Koychev, I., Sun, Y., and Pirie, I. 2004. Within-document retrieval: a user-centred evaluation of relevance profiling. Inf. Retr., 7(3-4), 265-290.
+<li id="8">[8]	Kelly, D. 2009. Methods for evaluating interactive information retrieval systems with users. Found. Trends Inf. Retr. 3 (January 2009), 1-224. DOI=10.1561/1500000012.</li>
+<li id="9">[9]	Loizides, F. and Buchanan, G. 2009. An empirical study of user navigation during document triage. In Proceedings of the 13th European conference on Research and advanced technology for digital libraries (ECDL'09), 138-149.</li>
+</section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+
+  </body>
+</html>
