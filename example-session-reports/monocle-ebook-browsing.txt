@@ -1,0 +1,18 @@
+127.0.0.1 2012-08-18,21:57:33.646 sd=1835 sid=VubWv2C4Dzwd event=load size=560x695 screenID=1
+127.0.0.1 2012-08-18,21:57:33.649 sd=1835 sid=VubWv2C4Dzwd event=viewportChange top=0 bottom=100 left=0 right=100 documentHeight=695 documentWidth=560 viewportHeight=695 viewportWidth=560 screenID=1
+127.0.0.1 2012-08-18,21:57:39.618 sd=1835 sid=VubWv2C4Dzwd event=plugin eventType=monocle:turn pageNumber=2 bottom=14.285714285714285 top=7.142857142857142 screenID=1
+127.0.0.1 2012-08-18,21:57:43.338 sd=1835 sid=VubWv2C4Dzwd event=plugin eventType=monocle:turn pageNumber=3 bottom=21.428571428571427 top=14.285714285714285 screenID=1
+127.0.0.1 2012-08-18,21:57:57.245 sd=1835 sid=VubWv2C4Dzwd event=plugin eventType=monocle:turn pageNumber=4 bottom=28.57142857142857 top=21.428571428571427 screenID=1
+127.0.0.1 2012-08-18,21:58:06.815 sd=1835 sid=VubWv2C4Dzwd event=plugin eventType=monocle:turn pageNumber=5 bottom=35.714285714285715 top=28.57142857142857 screenID=1
+127.0.0.1 2012-08-18,21:58:32.515 sd=1835 sid=VubWv2C4Dzwd event=plugin eventType=monocle:turn pageNumber=6 bottom=42.857142857142854 top=35.71428571428571 screenID=1
+127.0.0.1 2012-08-18,21:58:40.271 sd=1835 sid=VubWv2C4Dzwd event=plugin eventType=monocle:turn pageNumber=7 bottom=50 top=42.85714285714286 screenID=1
+127.0.0.1 2012-08-18,21:58:46.819 sd=1835 sid=VubWv2C4Dzwd event=plugin eventType=monocle:turn pageNumber=8 bottom=57.14285714285714 top=50 screenID=1
+127.0.0.1 2012-08-18,21:58:51.934 sd=1835 sid=VubWv2C4Dzwd event=plugin eventType=monocle:turn pageNumber=9 bottom=64.28571428571429 top=57.14285714285715 screenID=1
+127.0.0.1 2012-08-18,21:58:59.422 sd=1835 sid=VubWv2C4Dzwd event=plugin eventType=monocle:turn pageNumber=10 bottom=71.42857142857143 top=64.28571428571429 screenID=1
+127.0.0.1 2012-08-18,21:59:07.754 sd=1835 sid=VubWv2C4Dzwd event=plugin eventType=monocle:turn pageNumber=11 bottom=78.57142857142857 top=71.42857142857143 screenID=1
+127.0.0.1 2012-08-18,21:59:15.088 sd=1835 sid=VubWv2C4Dzwd event=plugin eventType=monocle:turn pageNumber=12 bottom=85.71428571428571 top=78.57142857142857 screenID=1
+127.0.0.1 2012-08-18,21:59:17.916 sd=1835 sid=VubWv2C4Dzwd event=plugin eventType=monocle:turn pageNumber=13 bottom=92.85714285714286 top=85.71428571428572 screenID=1
+127.0.0.1 2012-08-18,21:59:18.108 sd=1835 sid=VubWv2C4Dzwd event=plugin eventType=monocle:turn pageNumber=14 bottom=100 top=92.85714285714286 screenID=1
+127.0.0.1 2012-08-18,21:59:27.329 sd=1835 sid=VubWv2C4Dzwd event=plugin eventType=monocle:turn pageNumber=13 bottom=92.85714285714286 top=85.71428571428572 screenID=1
+127.0.0.1 2012-08-18,21:59:28.424 sd=1835 sid=VubWv2C4Dzwd event=plugin eventType=monocle:turn pageNumber=12 bottom=85.71428571428571 top=78.57142857142857 screenID=1
+127.0.0.1 2012-08-18,21:59:29.525 sd=1835 sid=VubWv2C4Dzwd event=plugin eventType=monocle:turn pageNumber=11 bottom=78.57142857142857 top=71.42857142857143 screenID=1
