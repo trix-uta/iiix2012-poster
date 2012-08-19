@@ -19,12 +19,7 @@
   </head>
   <body>
       <div id="header">
-        <nav>
-          <li class="fork"><a href="https://github.com/trix-uta/iiix2012-poster">View On GitHub</a></li>
-          <li class="downloads"><a href="https://github.com/trix-uta/iiix2012-poster/zipball/master">ZIP</a></li>
-          <li class="downloads"><a href="https://github.com/trix-uta/iiix2012-poster/tarball/master">TAR</a></li>
-          <li class="title">DOWNLOADS</li>
-        </nav>
+
       </div><!-- end header -->
 
     <div class="wrapper">
@@ -32,46 +27,36 @@
       <section>
         <div id="title">
           <h1>Unobtrusive mobile browsing behavior tracking tool</h1>
-          <p>Companion site for IIiX 2012 poster paper</p>
-          <hr>
+          <p>aka. UtaProxy</p>
+          <p>Companion site for IIiX 2012 poster</p>
+        </div>
+<section>
+         <h3>Read the <a href="http://trix-uta.github.com/iiix2012-poster/utaproxy-unobtrusive-mobile-browsing-behaviour-tracking-tool.html">full poster paper in </a> web-friendly HTML</a>.</h3>
+</section>
+        <h3>UtaProxy is a suite of tools for studying within-document navigation</h3>
+           <ul>
+              <li><a href="https://github.com/trix-uta/utaproxy-tools/blob/master/utaproxy/src/main/resources/readme.txt">UtaProxy</a> (a fork of <a href="http://fnuked.de/usaproxy/">UsaProxy 2.0</a> by Richard Atterer &amp; Monika Wnuk))</li>
+              <li><a href="https://github.com/trix-uta/utaproxy-tools/blob/master/utaproxyreportgenerator/src/main/resources/readme.txt">UtaProxy Report Generator</a> &mdash; for generating interactive visualizations based on logged interaction data</li>
+              <li><a href="https://github.com/trix-uta/utaproxy-tools/blob/master/utaproxylogdb/src/main/resources/readme.txt">UtaProxy Log2DB</a> &mdash; for storing UtaProxy logs into a database</li>
+          </ul>
+       <h3>Usage examples</h3>
+         <ul>
+         <li><a href="http://trix-uta.github.com/iiix2012-poster/example-session-reports/web-document-browsing.html">Session report</a> of web document browsing (see also <a href="http://trix-uta.github.com/iiix2012-poster/example-session-reports/web-document-browsing.txt">filtered log</a>)</li>
+         <li><a href="http://trix-uta.github.com/iiix2012-poster/example-session-reports/monocle-ebook-browsing.txt">Filtered log</a> of ebook reading session with Monocle HTML5 e-reader</li>
+</ul>
+
+
+       <h3>Fork us at Github</h3>
+         <p>UtaProxy is open source (see <a href="https://github.com/trix-uta/utaproxy-tools">https://github.com/trix-uta/utaproxy-tools</a>). Contributions are warmly welcome!</p>
+
+
+      </section>
+<hr>
           <span class="credits left">Project maintained by <a href="https://github.com/trix-uta">trix-uta</a></span>
           <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></span>
-        </div>
-
-        <h3>Placeholder content</h3>
-
-<h4>Utaproxy is extendable with JS plugins</h4>
-
-<div class="highlight"><pre><span class="p">;(</span><span class="kd">function</span><span class="p">(</span> <span class="nx">UsaProxy</span><span class="p">,</span> <span class="nb">document</span><span class="p">,</span> <span class="nb">window</span><span class="p">,</span> <span class="kc">undefined</span> <span class="p">)</span> <span class="p">{</span>
-    <span class="nx">UsaProxy</span><span class="p">.</span><span class="nx">plugins</span><span class="p">.</span><span class="nx">monocle</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="nx">setup</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{},</span>
-        <span class="nx">events</span> <span class="o">:</span> <span class="p">[</span> <span class="p">{</span>
-                  <span class="nx">bindTo</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> 
-                      <span class="k">return</span> <span class="nx">UsaProxy</span><span class="p">.</span><span class="nx">jQuery</span><span class="p">(</span> <span class="s1">'.monelem_box'</span> <span class="p">).</span><span class="nx">get</span><span class="p">();</span> <span class="p">},</span>
-                  <span class="nx">events</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> 
-                      <span class="k">return</span> <span class="p">[</span> <span class="s1">'monocle:turn'</span> <span class="p">];</span> <span class="p">},</span>
-                  <span class="nx">onTrigger</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">event</span> <span class="p">)</span> <span class="p">{</span>
-                      <span class="kd">var</span> <span class="nx">reader</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">dom</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">reader</span><span class="p">;</span>
-                      <span class="kd">var</span> <span class="nx">place</span> <span class="o">=</span> <span class="nx">reader</span><span class="p">.</span><span class="nx">getPlace</span><span class="p">();</span>
-                      <span class="k">return</span> <span class="p">{</span>
-                          <span class="nx">pageNumber</span> <span class="o">:</span> <span class="nx">place</span><span class="p">.</span><span class="nx">pageNumber</span><span class="p">(),</span>
-                          <span class="nx">bottom</span> <span class="o">:</span> <span class="mf">100.0</span> <span class="o">*</span> <span class="nx">place</span><span class="p">.</span><span class="nx">percentAtBottomOfPage</span><span class="p">(),</span>
-                          <span class="nx">top</span> <span class="o">:</span> <span class="mf">100.0</span> <span class="o">*</span> <span class="nx">place</span><span class="p">.</span><span class="nx">percentAtTopOfPage</span><span class="p">()</span>
-                      <span class="p">};</span> <span class="p">},</span>
-                  <span class="nx">deferBind</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">bindFunc</span> <span class="p">)</span> <span class="p">{</span>
-                      <span class="nx">UsaProxy</span><span class="p">.</span><span class="nx">jQuery</span><span class="p">(</span> <span class="s1">'div'</span> <span class="p">).</span><span class="nx">one</span><span class="p">(</span> <span class="s1">'monocle:loaded'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-                          <span class="nx">bindFunc</span><span class="p">(</span> <span class="p">[</span> <span class="k">this</span> <span class="p">]</span> <span class="p">);</span>
-                      <span class="p">}</span> <span class="p">);</span>
-                  <span class="p">}</span>
-        <span class="p">}</span>
-        <span class="p">]</span>   
-    <span class="p">};</span>
-<span class="p">}</span> <span class="p">)(</span> <span class="nx">UsaProxy</span><span class="p">,</span> <span class="nb">document</span><span class="p">,</span> <span class="nb">window</span> <span class="p">);</span>
-</pre></div>
-      </section>
 
     </div>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-    
+
   </body>
 </html>
